@@ -45,9 +45,10 @@ if 'clicked' not in st.session_state:
     st.session_state.clicked = False
 def click_button():
     st.session_state.clicked = True
-#if st.session_state.clicked:
+if st.session_state.clicked:
+    st.write('JOrge')
     
-    
+
 
 
 
