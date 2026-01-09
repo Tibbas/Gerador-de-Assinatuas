@@ -39,15 +39,16 @@ if ramal_str:
 col3, col4, col5 = st.columns([2, 2, 2])
 
 with col4:
-if 'clicked' not in st.session_state:
+    if 'clicked' not in st.session_state:
     st.session_state.clicked = False
-def click_button():
+    def click_button():
     st.session_state.clicked = True
 
-button = st.button("Gerar Assinatura", use_container_width=100, on_click = click_button)
-if st.session_state.clicked:
+    button = st.button("Gerar Assinatura", use_container_width=100, on_click = click_button)
+    if st.session_state.clicked:
     st.write('JOrge')
     
+
 
 
 
