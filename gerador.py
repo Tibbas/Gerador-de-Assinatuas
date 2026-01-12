@@ -57,7 +57,7 @@ with col4:
 
     button = st.button("Gerar Assinatura", use_container_width=100, on_click=click_button)
 
-# AQUI FORA DO IF - defina html_content
+
 if st.session_state.clicked:
     html_content = f"""
         <!DOCTYPE html>
@@ -123,4 +123,5 @@ if st.session_state.clicked:
     
     components.html(html_content, height=300)
     
+
 
