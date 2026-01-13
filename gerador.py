@@ -234,7 +234,8 @@ if st.session_state.clicked:
 </html>
 """
 
-    components.html(html_content, height=215)
+    components.html(html_content, height=220)
+
 
 
 
