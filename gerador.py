@@ -208,7 +208,7 @@ if st.session_state.clicked:
             </tr>
             
             <tr id="containerNameSetor">
-                <td><strong><span class="spanName">{nome_usuario}</span><br>Gerência de {gerencia} - {cargo}</strong><br><span style="line-height: 28px;">(37)3229-7700 | {ramal_str}</span></td>
+                <td><strong><span class="spanName">{nome_usuario}</span><br>Gerência de {gerencia} - {cargo}</strong><br><span style="line-height: 28px;">(37)3229-7700 | (37)3229-{ramal_str}</span></td>
             </tr>
 
             <tr id="containerLinkhospital">
@@ -235,6 +235,7 @@ if st.session_state.clicked:
 """
 
     components.html(html_content, height=300)
+
 
 
 
