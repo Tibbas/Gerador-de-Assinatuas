@@ -2,7 +2,7 @@
 """ quando for rodar o codigo instala o streamlit usando na cmd:
             pip install streamlit
     
-    e pra rodar usa esse mando, porque por algum motivo da forma tradicional nao estava rodando:
+    e pra rodar usa esse comando, porque por algum motivo da forma tradicional nao estava rodando:
 
     forma normal: streamlit run gerador.py
     forma que da certo: python -m streamlit run gerador.py
@@ -231,3 +231,4 @@ if st.session_state.clicked:
 """
 
     components.html(html_content, height=300)
+
