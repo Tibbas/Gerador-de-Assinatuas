@@ -154,6 +154,10 @@ if st.session_state.clicked:
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             font-size: 14px;
             line-height: 20px;
+            background-color: white;
+            color: black;
+            width: 100%;
+            min-height: 100vh;
         }}
 
         table{{
@@ -231,4 +235,5 @@ if st.session_state.clicked:
 """
 
     components.html(html_content, height=300)
+
 
