@@ -113,7 +113,7 @@ if st.session_state.clicked:
                     <td class="tdNomeUsuario" style="font-size: 12px;">
                         <span style="font-weight: 600; font-size: 14px;">{nome_usuario}</span><br>
                         <span style="font-weight: 600;">Gerência de {gerencia} - {cargo}</span><br>
-                        (37)3229-7700 | {ramal_str}<br><br>
+                        (37)3229-7700 | (37)3229-{ramal_str}<br><br>
                         <a href="https://www.instagram.com/cssjd_divinopolis/" target="_blank">
                             <img src="https://cssjd.org.br/imagens/assinaturas/v2/cssjd_07.gif" alt="Instagram" width="30" height="30">
                         </a>
@@ -235,5 +235,6 @@ if st.session_state.clicked:
 """
 
     components.html(html_content, height=300)
+
 
 
