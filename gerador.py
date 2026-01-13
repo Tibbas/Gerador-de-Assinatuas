@@ -113,7 +113,7 @@ if st.session_state.clicked:
                     <td class="tdNomeUsuario" style="font-size: 12px;">
                         <span style="font-weight: 600; font-size: 14px;">{nome_usuario}</span><br>
                         <span style="font-weight: 600;">Gerência de {gerencia} - {cargo}</span><br>
-                        (37)3229 7700 | {ramal_str}<br><br>
+                        (37)3229-7700 | {ramal_str}<br><br>
                         <a href="https://www.instagram.com/cssjd_divinopolis/" target="_blank">
                             <img src="https://cssjd.org.br/imagens/assinaturas/v2/cssjd_07.gif" alt="Instagram" width="30" height="30">
                         </a>
@@ -204,7 +204,7 @@ if st.session_state.clicked:
             </tr>
             
             <tr id="containerNameSetor">
-                <td><strong><span class="spanName">{nome_usuario}</span><br>Gerência de {gerencia} - {cargo}</strong><br><span style="line-height: 28px;">(37)3229 7700 | {ramal_str}</span></td>
+                <td><strong><span class="spanName">{nome_usuario}</span><br>Gerência de {gerencia} - {cargo}</strong><br><span style="line-height: 28px;">(37)3229-7700 | {ramal_str}</span></td>
             </tr>
 
             <tr id="containerLinkhospital">
@@ -225,7 +225,6 @@ if st.session_state.clicked:
                 </td>
             </tr>
         </tbody>
-        3229 7700
     </table>
 </body>
 </html>
