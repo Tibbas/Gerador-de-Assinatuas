@@ -20,7 +20,7 @@ st.title("📚 Gerador de Assinaturas")
 st.markdown("Insira os dados solicitados para gerar a assitura:")
 
 nome_usuario = st.text_input("🔍 Nome do usuário:")
-gerencia = st.text_input("🔍 Digite seu Setor:")
+gerencia = st.text_input("🔍 Digite o Setor:")
 cargo = st.text_input("💼 Digite o Cargo do usuário:")
 ramal_str = st.text_input("📞 Digite o Ramal:")
 
@@ -235,6 +235,7 @@ if st.session_state.clicked:
 """
 
     components.html(html_content, height=220)
+
 
 
 
