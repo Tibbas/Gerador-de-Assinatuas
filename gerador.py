@@ -1,4 +1,5 @@
 
+
 """ quando for rodar o codigo instala o streamlit usando na cmd:
             pip install streamlit
     
@@ -12,67 +13,115 @@ Copia esses numeros tambem.
 
 """
 
+
 import streamlit as st
+import hashlib
+from passlib.context import CryptContext
 import streamlit.components.v1 as components
 
-st.title("📚 Gerador de Assinaturas")
 
-st.markdown("Insira os dados solicitados para gerar a assitura:")
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
-nome_usuario = st.text_input("🔍 Nome do usuário:")
-gerencia = st.text_input("📋 Digite o Setor:")
-cargo = st.text_input("💼 Digite o Cargo do usuário:")
-ramal_str = st.text_input("📞 Digite o Ramal:")
+USUARIO_HASH = "d4d17945af7692a0a59ac322039f6da6b160374ffb719c3714a57c906e0663b7"
+HASH_SENHA = "$argon2id$v=19$m=65536,t=3,p=4$/T8n5BzD+F8rRcj5P4ewdg$btjvLhjcjoGP2Xa3SqAgSUvVa9u/fl6o6dXvyWzNtvg"
 
 
+def hash_usuario(usuario: str) -> str:
+    return hashlib.sha256(usuario.strip().lower().encode()).hexdigest()
 
 
-col_texto, col_checkbox = st.columns([6, 1])
+if "pagina" not in st.session_state:
+    st.session_state.pagina = "login"
 
-with col_texto:
-    st.markdown(
-        "<div style='padding-top:6px;'>📌 Funcionário do Compras</div>",
-        unsafe_allow_html=True
-    )
-
-with col_checkbox:
-    funcionario_compras = st.checkbox(
-    "funcionario_compras_hidden",
-    key="funcionario_compras",
-    label_visibility="collapsed"
-    
-)
+if "clicked" not in st.session_state:
+    st.session_state.clicked = False
 
 
+st.markdown("""
+<style>
+.card {
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 420px;
+    margin: 80px auto;
+}
+.card h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+</style>
+""", unsafe_allow_html=True)
 
-if ramal_str:
-    ramal_numeros = ''.join(filter(str.isdigit, ramal_str))
-    
-    if ramal_numeros.isdigit() and len(ramal_numeros) >= 4:
-        ramal_int = int(ramal_numeros)
-        st.success(f"✅ Ramal limpo: {ramal_int}")
-    else:
-        st.error("❌ Só números, mínimo 4 dígitos!")
+
+def tela_login():
+    st.markdown('<div class="card">', unsafe_allow_html=True)
+    st.markdown("<h2>🔐 Login</h2>", unsafe_allow_html=True)
+
+    user = st.text_input("Usuário")
+    pwd = st.text_input("Senha", type="password")
+
+    if st.button("Entrar", use_container_width=True):
+        if (
+            hash_usuario(user) == USUARIO_HASH
+            and pwd_context.verify(pwd, HASH_SENHA)
+        ):
+            st.session_state.pagina = "gerador"
+            st.rerun()
+        else:
+            st.error("Usuário ou senha inválidos")
+
+    st.markdown('</div>', unsafe_allow_html=True)
 
 
-col3, col4, col5 = st.columns([2, 2, 2])
+def tela_gerador():
+    st.title("📚 Gerador de Assinaturas")
 
-with col4:
-    if 'clicked' not in st.session_state:
-        st.session_state.clicked = False
+    col1, col2 = st.columns([6, 1])
+    with col2:
+        if st.button("🚪 Sair"):
+            st.session_state.pagina = "login"
+            st.session_state.clicked = False
+            st.rerun()
+
+    st.markdown("Insira os dados solicitados para gerar a assinatura:")
+
+    nome_usuario = st.text_input("🔍 Nome do usuário:")
+    gerencia = st.text_input("📋 Digite o Setor:")
+    cargo = st.text_input("💼 Digite o Cargo do usuário:")
+    ramal_str = st.text_input("📞 Digite o Ramal:")
+
+    col_texto, col_checkbox = st.columns([6, 1])
+
+    with col_texto:
+        st.markdown(
+            "<div style='padding-top:6px;'>📌 Funcionário do Compras</div>",
+            unsafe_allow_html=True
+        )
+
+    with col_checkbox:
+        funcionario_compras = st.checkbox(
+            "funcionario_compras_hidden",
+            key="funcionario_compras",
+            label_visibility="collapsed"
+        )
+
+    if ramal_str:
+        ramal_numeros = ''.join(filter(str.isdigit, ramal_str))
+        if ramal_numeros.isdigit() and len(ramal_numeros) >= 4:
+            ramal_int = int(ramal_numeros)
+            st.success(f"✅ Ramal limpo: {ramal_int}")
+        else:
+            st.error("❌ Só números, mínimo 4 dígitos!")
 
     def click_button():
         st.session_state.clicked = True
 
     st.button("Gerar Assinatura", use_container_width=True, on_click=click_button)
 
-
-if st.session_state.clicked:
-
-    
-    if funcionario_compras:
-        html_content = f"""
-            <!DOCTYPE html>
+    if st.session_state.clicked:
+        if funcionario_compras:
+            html_content = f"""
+                <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -132,10 +181,9 @@ if st.session_state.clicked:
     </body>
 </html>
 """
-
-    else:
-        html_content = f"""
-            <!DOCTYPE html>
+        else:
+            html_content = f"""
+                <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -234,16 +282,11 @@ if st.session_state.clicked:
 </html>
 """
 
-    components.html(html_content, height=220)
+        components.html(html_content, height=220)
 
 
+if st.session_state.pagina == "login":
+    tela_login()
 
-
-
-
-
-
-
-
-
-
+elif st.session_state.pagina == "gerador":
+    tela_gerador()
