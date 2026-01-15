@@ -76,13 +76,6 @@ def tela_login():
 def tela_gerador():
     st.title("📚 Gerador de Assinaturas")
 
-    col1, col2 = st.columns([80, -60])
-    with col2:
-        if st.button("🚪 Sair"):
-            st.session_state.pagina = "login"
-            st.session_state.clicked = False
-            st.rerun()
-
     st.markdown("Insira os dados solicitados para gerar a assinatura:")
 
     nome_usuario = st.text_input("🔍 Nome do usuário:")
@@ -290,6 +283,7 @@ if st.session_state.pagina == "login":
 
 elif st.session_state.pagina == "gerador":
     tela_gerador()
+
 
 
 
