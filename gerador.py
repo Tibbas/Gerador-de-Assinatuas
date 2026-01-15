@@ -76,7 +76,7 @@ def tela_login():
 def tela_gerador():
     st.title("📚 Gerador de Assinaturas")
 
-    col1, col2 = st.columns([11, 1])
+    col1, col2 = st.columns([80, 1])
     with col2:
         if st.button("🚪 Sair"):
             st.session_state.pagina = "login"
@@ -290,4 +290,5 @@ if st.session_state.pagina == "login":
 
 elif st.session_state.pagina == "gerador":
     tela_gerador()
+
 
