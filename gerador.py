@@ -12,7 +12,7 @@
 Copia esses numeros tambem.
 
 """
-
+streamlit run gerador.py --server.port $PORT --server.address 0.0.0.0
 
 import streamlit as st
 import hashlib
@@ -283,6 +283,7 @@ if st.session_state.pagina == "login":
 
 elif st.session_state.pagina == "gerador":
     tela_gerador()
+
 
 
 
